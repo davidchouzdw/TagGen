@@ -478,7 +478,7 @@ def main(args, config, output_directory):
         train_dataset = data_loader(output_directory, args.embedding, 'train', args.mode)
         train_iterator = DataLoader(train_dataset, batch_size=config.batch_size, shuffle=True, num_workers=8)
         device = torch.device('cuda:{}'.format(args.gpu) if torch.cuda.is_available() else 'cpu')
-        val_dataset = data_loader(output_directory, args.embedding,  'val', args.mode)
+        val_dataset = data_loader(output_directory, args.embedding,  'val')
         val_iterator = DataLoader(val_dataset, batch_size=config.batch_size, shuffle=True, num_workers=8)
         model = Transformer(config).to(device)
         model = model.double()
