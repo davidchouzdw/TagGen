@@ -10,9 +10,6 @@ Towards Generation of Temporal Networks withFine-Grained Properties
 * python 3.7
 * pytorch 1.2
 
-# Demo Dataset
-* DBLP
-
 # Command for Training
 python graph_fairnet.py -d DBLP -w 5 -t 15 -b -g 0 -m
 
