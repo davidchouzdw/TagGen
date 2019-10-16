@@ -61,7 +61,7 @@ class BiLevelMultiHeadedAttention(nn.Module):
         self.linears = clones(nn.Linear(d_model, d_model), 4)
         self.attn = None
         self.dropout = nn.Dropout(p=dropout)
-        self.coef = 0
+        self.coef = 0.5
 
     def forward(self, x_1, x_2, mask=None):
         "Implements Multi-head attention"
