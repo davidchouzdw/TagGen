@@ -15,8 +15,3 @@ python graph_fairnet.py -d DBLP -w 5 -t 15 -b -g 0 -m
 
 # Command for Test
 python graph_fairnet.py -d DBLP -w 5 -t 15 -b -g 0
-
-# Fine-tuning with FinTech
-
-
-
