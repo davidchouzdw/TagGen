@@ -495,7 +495,7 @@ def main(args, config, output_directory):
         model.learning_rate = 0.08
         train_dataset = data_loader(output_directory, args.embedding, 'train')
         train_iterator = DataLoader(train_dataset, batch_size=50, shuffle=True, num_workers=8)
-        config.threshold = max(threshold(train_iterator, model), 0.95)
+        config.threshold = max(threshold(train_iterator, model), 0.9)
         generate_sequence(config, output_directory, model)
 
 
