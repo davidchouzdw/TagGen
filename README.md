@@ -10,15 +10,14 @@ Towards Generation of Temporal Networks withFine-Grained Properties
 * python 3.7
 * pytorch 1.2
 
-# Datasets
+# Demo Dataset
 * DBLP
-* SO
-* EMAIL
-* MSG
-* BITCOIN
-* WKIK
-* MO
 
+# Command for Training
+python graph_fairnet.py -d DBLP -w 5 -t 15 -b -g 0 -m
+
+# Command for Test
+python graph_fairnet.py -d DBLP -w 5 -t 15 -b -g 0
 
 # Fine-tuning with FinTech
 
