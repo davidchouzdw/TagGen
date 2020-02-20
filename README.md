@@ -1,5 +1,5 @@
 # Introduction
-FinTech is an end-to-end deep generative model that is able to directly learn from the raw while finest-grained temporal networks (i.e., a collection of time-stamped edges). In particular, our framework is built based on a Transformer machine that learns the distribution of temporal random walks over the input data. To mimic the dynamic systems, FinTech is equipped with a novel context generation scheme that defines a family of local operations to perform addition and deletion over nodes and edges dynamically.
+TagGen an end-to-end deep generative framework named TagGen, that addresses all the above challenges. In particular, we first design a novel sampling strategy to jointly extract structural and temporal context information directly from a collection of timestamped edges. Then, inspired by the advances of Transformer model in symbolic sequence modeling, TagGen parameterizes a bi-level self-attention mechanism together with a family of local operations to generate temporal random walks. At last, a discriminator gradually selects generated temporal random walks, that are plausible in the input data, and feeds them to an assembling module for generating temporal networks.
 
 
 # Paper
