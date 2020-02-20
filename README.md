@@ -3,8 +3,7 @@ FinTech is an end-to-end deep generative model that is able to directly learn fr
 
 
 # Paper
-Towards Generation of Temporal Networks withFine-Grained Properties
-
+A Data Driven Graph Generative Model for Temporal Interaction Networks
 
 # Requirements
 * python 3.7
