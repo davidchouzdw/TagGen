@@ -1,4 +1,4 @@
-# A Data-Driven Graph Generative Model for Temporal Interaction Networks
+## A Data-Driven Graph Generative Model for Temporal Interaction Networks
 
 ### Introduction
 TagGen is an end-to-end deep generative model that is able to directly learn from the raw while finest-grained temporal 
