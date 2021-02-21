@@ -24,7 +24,9 @@ class Config(object):
     lr = 0.003
     max_epochs = 30
     batch_size = 64
+    # max number of nodes
     max_sen_len = 25
+    # prob for action [insert, delete, skip]
     action_prob = [0.45, 0.35, 0.2]
     search_size = 500
     sample_time = 20
@@ -207,7 +209,7 @@ class Transformer(nn.Module):
 
 
 class data_loader():
-    def __init__(self, output_directory, embedding, stage='train', mode=False):
+    def __init__(self, output_directory, embedding, embedding2, stage='train', mode=False):
         self.role = []
         self.node = []
         self.label = []
@@ -219,7 +221,7 @@ class data_loader():
                     line = line.split()
                     role_level_emb[line[0]] = np.array(list(map(float, line[1:])))
             node_level_emb = dict()
-            with open(embedding, 'r') as f_emb:
+            with open(embedding2, 'r') as f_emb:
                 next(f_emb)
                 for line in f_emb:
                     line = line.split()
@@ -435,7 +437,7 @@ def generate_sequence(config, output_directory, model):
                     key_nodes = candidate_key_nodes[indices]
                 else:
                     action = 2
-            # deletion (action: 2)
+            # deletion (action: 1)
             if action == 1:
                 # avoid deleting key nodes
                 if key_nodes[ind] == 1.0:
@@ -475,10 +477,10 @@ def generate_sequence(config, output_directory, model):
 
 def main(args, config, output_directory):
     if args.mode:
-        train_dataset = data_loader(output_directory, args.embedding, 'train', args.mode)
+        train_dataset = data_loader(output_directory, config.embedding, config.node_embedding, 'train', args.mode)
         train_iterator = DataLoader(train_dataset, batch_size=config.batch_size, shuffle=True, num_workers=8)
         device = torch.device('cuda:{}'.format(args.gpu) if torch.cuda.is_available() else 'cpu')
-        val_dataset = data_loader(output_directory, args.embedding,  'val')
+        val_dataset = data_loader(output_directory, config.embedding, config.node_embedding,  'val')
         val_iterator = DataLoader(val_dataset, batch_size=config.batch_size, shuffle=True, num_workers=8)
         model = Transformer(config).to(device)
         model = model.double()
@@ -493,7 +495,7 @@ def main(args, config, output_directory):
         model = model.double()
         model.device = device
         model.learning_rate = 0.08
-        train_dataset = data_loader(output_directory, args.embedding, 'train')
+        train_dataset = data_loader(output_directory, config.embedding, config.node_embedding,  'train')
         train_iterator = DataLoader(train_dataset, batch_size=50, shuffle=True, num_workers=8)
         config.threshold = max(threshold(train_iterator, model), 0.9)
         generate_sequence(config, output_directory, model)
@@ -505,8 +507,8 @@ if __name__ == "__main__":
     parser.add_argument('-w', dest='window', type=int, default=5, help='time window sizes')
     parser.add_argument('-d', dest='data', type=str, default='DBLP', help='data directory')
     parser.add_argument('-g', dest='gpu', type=str, default='0', help='the index of GPU')
-    parser.add_argument('-b', dest='biased', action='store_true', help="biased or unbiased, default is unbiased")
-    parser.add_argument('-m', dest='mode', action='store_true', help='train or test, default is test')
+    parser.add_argument('-b', dest='biased', action='store_true', help="biased or unbiased, default is biased")
+    parser.add_argument('-m', dest='mode', action='store_true', help='train or test, default is train')
     args = parser.parse_args()
     config = Config()
     biased = args.biased
