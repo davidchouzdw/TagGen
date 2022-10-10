@@ -22,7 +22,7 @@ class Config(object):
     dropout = 0.2
     output_size = 2
     lr = 0.003
-    max_epochs = 30
+    max_epochs = 3000
     batch_size = 64
     # max number of nodes
     max_sen_len = 25
