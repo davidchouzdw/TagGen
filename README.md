@@ -38,7 +38,7 @@ proximity, while unbiased temporal random walk is independent of node proximity.
 
 ### Evaluation：
 The final results will be stored in the directory: "./data/DBLP/metrics.txt".
-The synthetic graph is stored in the directory:"./data/DBLP/DBLP_output_sequences.txt".
+The synthetic graph is stored in the directory:"./data/DBLP/DBLP_output_sequences.txt" or you can save the variable "Graph" as the final output synthetic graph in https://github.com/davidchouzdw/TagGen/blob/master/metrics.py#L72.
 
 
 ### Reference:
